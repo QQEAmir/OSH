@@ -2,6 +2,7 @@
   "outputDirectory": "public",
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/auth/callback", "dest": "/public/callback.html" },
+    { "src": "/(.*)", "dest": "/public/index.html" }
   ]
 }
