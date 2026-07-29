@@ -190,6 +190,13 @@
   </div>
 </div>
 
+<div id="customModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#13131a;border:1px solid #2a2a3d;border-radius:20px;padding:36px 32px;max-width:360px;width:90%;text-align:center;box-shadow:0 25px 60px rgba(108,99,255,0.2);">
+    <div style="font-size:32px;margin-bottom:16px;">⚠️</div>
+    <p id="modalMsg" style="font-size:15px;color:#e2e8f0;font-weight:600;margin-bottom:24px;line-height:1.6;"></p>
+    <button onclick="closeModal()" style="padding:12px 32px;background:linear-gradient(135deg,#6c63ff,#a78bfa);border:none;border-radius:12px;color:#fff;font-size:15px;font-weight:700;font-family:Inter,sans-serif;cursor:pointer;">Got it</button>
+  </div>
+</div>
 <div class="saving-overlay" id="savingOverlay">
   <div class="saving-box">
     <span class="saving-spinner">⚙️</span>
@@ -250,9 +257,16 @@ let currentModule = null;
 let selectedAnswers = {};
 let quizSubmitted = false;
 
+function showModal(msg) {
+  document.getElementById('modalMsg').textContent = msg;
+  document.getElementById('customModal').style.display = 'flex';
+}
+function closeModal() {
+  document.getElementById('customModal').style.display = 'none';
+}
 function login() {
   const name = document.getElementById('inputName').value.trim();
-  if (!name) { alert('Please enter your QQE name.'); return; }
+  if (!name) { showModal('Please enter your QQE name.'); return; }
   user = {name, id: name.toLowerCase().replace(/\s+/g,'_') + '_' + Date.now()};
   loadProgress();
   initUser();
@@ -345,7 +359,7 @@ function selectAnswer(qi,oi) {
 }
 
 function submitQuiz() {
-  if (Object.keys(selectedAnswers).length < currentModule.questions.length) { alert('Please answer all questions.'); return; }
+  if (Object.keys(selectedAnswers).length < currentModule.questions.length) { showModal('Please answer all questions before submitting.'); return; }
   quizSubmitted = true;
   document.getElementById('submitBtn').disabled = true;
   let score = 0;
@@ -428,6 +442,6 @@ function showScreen(id) {
   document.getElementById(id).classList.add('active');
 }
 </script>
-<div style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(100,116,139,0.4);white-space:nowrap;pointer-events:none;font-family:Inter,sans-serif;">Developed by CampusTop Video and Creative (Cebu Office)</div>
+<div style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(100,116,139,0.55);white-space:nowrap;pointer-events:none;font-family:Inter,sans-serif;">Developed by CampusTop Video and Creative (Cebu Office)</div>
 </body>
 </html>
