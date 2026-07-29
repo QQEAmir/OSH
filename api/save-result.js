@@ -2,42 +2,25 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const APP_ID = process.env.LARK_APP_ID;
-  const APP_SECRET = process.env.LARK_APP_SECRET;
-  const BASE_ID = process.env.LARK_BASE_ID || 'ZE5kbAFtva1ACRsdBSzjv4tTp8s';
-  const TABLE_ID = process.env.LARK_TABLE_ID || 'tblWfwyUz50R9aVm';
+  const WEBHOOK_URL = 'https://zp9fxvayn6g.jp.larksuite.com/base/workflow/webhook/event/X7zgaLFdlwleLnhFBMdjzLEspfg';
 
   try {
     const { name, employeeId, module, score, passed, attempts, wrongQuestions, date } = req.body;
 
-    // Get access token
-    const tokenRes = await fetch('https://open.larksuite.com/open-apis/auth/v3/tenant_access_token/internal', {
+    await fetch(WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ app_id: APP_ID, app_secret: APP_SECRET })
-    });
-    const tokenData = await tokenRes.json();
-    const token = tokenData.tenant_access_token;
-
-    // Save to Base
-    await fetch(`https://open.larksuite.com/open-apis/bitable/v1/apps/${BASE_ID}/tables/${TABLE_ID}/records`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
       body: JSON.stringify({
-        fields: {
-          'Name': name,
-          'Module': module,
-          'Score': score,
-          'Date': date,
-          'Wrong Questions': wrongQuestions
-        }
+        name: name || employeeId,
+        module: String(module),
+        score: String(score),
+        passed: String(passed),
+        attempts: String(attempts),
+        wrong_questions: wrongQuestions || '',
+        date: date || new Date().toISOString()
       })
     });
 
