@@ -12,20 +12,59 @@
   .screen { display:none; min-height:100vh; }
   .screen.active { display:flex; }
 
-  #loginScreen { align-items:center; justify-content:center; background:radial-gradient(ellipse at 50% 0%,#1a1040 0%,#0a0a0f 70%); padding:24px; }
-  .login-card { background:var(--surface); border:1px solid var(--border); border-radius:24px; padding:48px 40px; width:100%; max-width:420px; box-shadow:0 25px 60px rgba(108,99,255,0.15); text-align:center; }
+  /* WELCOME */
+  #welcomeScreen {
+    align-items:center; justify-content:center;
+    background:radial-gradient(ellipse at 50% 0%,#1a1040 0%,#0a0a0f 70%);
+    padding:24px; flex-direction:column;
+  }
+  .welcome-card {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:24px; padding:48px 40px;
+    width:100%; max-width:480px;
+    box-shadow:0 25px 60px rgba(108,99,255,0.15);
+    text-align:center;
+  }
   .logo { display:flex; align-items:center; gap:12px; margin-bottom:36px; justify-content:center; }
   .logo-icon { width:56px; height:56px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:26px; }
   .logo-text { font-size:24px; font-weight:800; color:var(--white); }
   .logo-sub { font-size:11px; color:var(--muted); font-weight:500; letter-spacing:2px; text-transform:uppercase; }
-  .login-title { font-size:26px; font-weight:800; color:var(--white); margin-bottom:8px; }
-  .login-sub { font-size:14px; color:var(--muted); margin-bottom:32px; line-height:1.6; }
-  .form-input { width:100%; padding:14px 16px; background:var(--surface2); border:1.5px solid var(--border); border-radius:12px; color:var(--white); font-size:15px; font-family:inherit; outline:none; transition:border-color 0.2s; margin-bottom:12px; text-align:left; }
-  .form-input:focus { border-color:var(--accent); }
-  .form-input::placeholder { color:var(--muted); }
-  .btn-primary { width:100%; padding:15px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border:none; border-radius:12px; color:var(--white); font-size:16px; font-weight:700; font-family:inherit; cursor:pointer; transition:opacity 0.2s,transform 0.1s; }
-  .btn-primary:hover { opacity:0.9; transform:translateY(-1px); }
 
+  .welcome-greeting { font-size:16px; color:var(--muted); margin-bottom:8px; }
+  .welcome-name { font-size:32px; font-weight:900; color:var(--white); margin-bottom:16px; }
+  .welcome-desc { font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:36px; }
+
+  .course-info { display:flex; gap:12px; justify-content:center; margin-bottom:36px; flex-wrap:wrap; }
+  .course-badge { background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:10px 18px; font-size:13px; font-weight:600; color:var(--text); }
+
+  .btn-start {
+    width:100%; padding:16px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    border:none; border-radius:14px;
+    color:var(--white); font-size:17px; font-weight:700;
+    font-family:inherit; cursor:pointer;
+    transition:opacity 0.2s, transform 0.1s;
+  }
+  .btn-start:hover { opacity:0.9; transform:translateY(-1px); }
+
+  /* NO ACCESS */
+  #noAccessScreen {
+    align-items:center; justify-content:center;
+    background:radial-gradient(ellipse at 50% 0%,#1a0a0a 0%,#0a0a0f 70%);
+    padding:24px;
+  }
+  .noaccess-card {
+    background:var(--surface); border:1px solid rgba(239,68,68,0.3);
+    border-radius:24px; padding:48px 40px;
+    width:100%; max-width:440px;
+    box-shadow:0 25px 60px rgba(239,68,68,0.1);
+    text-align:center;
+  }
+  .noaccess-icon { font-size:48px; margin-bottom:20px; }
+  .noaccess-title { font-size:22px; font-weight:800; color:var(--white); margin-bottom:12px; }
+  .noaccess-desc { font-size:14px; color:var(--muted); line-height:1.7; }
+
+  /* NAVBAR */
   .navbar { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(10,10,15,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
   .nav-logo { display:flex; align-items:center; gap:10px; }
   .nav-logo-icon { width:36px; height:36px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; }
@@ -34,6 +73,7 @@
   .nav-user-name { font-size:14px; font-weight:600; color:var(--text); }
   .nav-avatar { width:36px; height:36px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:var(--white); }
 
+  /* DASHBOARD */
   #dashboardScreen { flex-direction:column; padding-top:64px; }
   .dash-hero { background:linear-gradient(135deg,#1a1040 0%,#0d1a2e 100%); padding:48px 24px; text-align:center; border-bottom:1px solid var(--border); }
   .dash-hero h1 { font-size:32px; font-weight:900; color:var(--white); margin-bottom:8px; }
@@ -66,6 +106,7 @@
   .status-completed { background:rgba(34,197,94,0.15); color:var(--green); }
   .module-attempts { font-size:12px; color:var(--muted); }
 
+  /* MODULE */
   #moduleScreen { flex-direction:column; padding-top:64px; }
   .module-content { max-width:900px; margin:0 auto; width:100%; padding:32px 24px; }
   .back-btn { display:inline-flex; align-items:center; gap:8px; padding:8px 16px; background:var(--surface); border:1px solid var(--border); border-radius:10px; color:var(--text); font-size:14px; font-weight:600; cursor:pointer; margin-bottom:24px; transition:border-color 0.2s; font-family:inherit; }
@@ -124,8 +165,17 @@
   @keyframes spin { to { transform:rotate(360deg); } }
   .saving-text { font-size:15px; color:var(--text); font-weight:600; }
 
+  .footer-text { position:fixed; bottom:12px; left:50%; transform:translateX(-50%); font-size:11px; color:rgba(100,116,139,0.5); white-space:nowrap; pointer-events:none; font-family:Inter,sans-serif; }
+
+  /* MODAL */
+  #customModal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center; }
+  .modal-box { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:36px 32px; max-width:360px; width:90%; text-align:center; box-shadow:0 25px 60px rgba(108,99,255,0.2); }
+  .modal-icon { font-size:32px; margin-bottom:16px; }
+  .modal-msg { font-size:15px; color:var(--text); font-weight:600; margin-bottom:24px; line-height:1.6; }
+  .modal-btn { padding:12px 32px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border:none; border-radius:12px; color:var(--white); font-size:15px; font-weight:700; font-family:inherit; cursor:pointer; }
+
   @media (max-width:600px) {
-    .login-card { padding:32px 20px; }
+    .welcome-card, .noaccess-card { padding:32px 20px; }
     .modules-grid { grid-template-columns:1fr; padding:16px; }
     .quiz-section { padding:20px; }
     .options { padding-left:0; }
@@ -134,8 +184,9 @@
 </head>
 <body>
 
-<div id="loginScreen" class="screen active">
-  <div class="login-card">
+<!-- WELCOME -->
+<div id="welcomeScreen" class="screen active">
+  <div class="welcome-card">
     <div class="logo">
       <div class="logo-icon">🏛️</div>
       <div>
@@ -143,13 +194,35 @@
         <div class="logo-sub">OSH Training</div>
       </div>
     </div>
-    <h2 class="login-title">Welcome</h2>
-    <p class="login-sub">Enter your QQE name to begin the OSH Safety Training Program.</p>
-    <input class="form-input" id="inputName" type="text" placeholder="Enter your QQE name">
-    <button class="btn-primary" onclick="login()">Start Training →</button>
+    <div class="welcome-greeting">Hi,</div>
+    <div class="welcome-name" id="welcomeName"></div>
+    <div class="welcome-desc">Welcome to the OSH Safety Training Program. Complete all 6 modules to finish the course.</div>
+    <div class="course-info">
+      <div class="course-badge">📚 6 Modules</div>
+      <div class="course-badge">✅ 70% to Pass</div>
+      <div class="course-badge">🏆 Certificate</div>
+    </div>
+    <button class="btn-start" onclick="startTraining()">Get Started →</button>
   </div>
 </div>
 
+<!-- NO ACCESS -->
+<div id="noAccessScreen" class="screen">
+  <div class="noaccess-card">
+    <div class="noaccess-icon">🔒</div>
+    <div class="logo" style="margin-bottom:20px;">
+      <div class="logo-icon">🏛️</div>
+      <div>
+        <div class="logo-text">CampusTop</div>
+        <div class="logo-sub">OSH Training</div>
+      </div>
+    </div>
+    <div class="noaccess-title">Access Required</div>
+    <div class="noaccess-desc">Please access this training through your Lark message. Contact your administrator if you need assistance.</div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
 <nav class="navbar" id="navbar" style="display:none">
   <div class="nav-logo">
     <div class="nav-logo-icon">🏛️</div>
@@ -161,6 +234,7 @@
   </div>
 </nav>
 
+<!-- DASHBOARD -->
 <div id="dashboardScreen" class="screen">
   <div class="dash-hero">
     <h1>OSH Training Program</h1>
@@ -174,6 +248,7 @@
   <div class="modules-grid" id="modulesGrid"></div>
 </div>
 
+<!-- MODULE -->
 <div id="moduleScreen" class="screen">
   <div class="module-content">
     <button class="back-btn" onclick="showDashboard()">← Back to Dashboard</button>
@@ -190,19 +265,24 @@
   </div>
 </div>
 
-<div id="customModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#13131a;border:1px solid #2a2a3d;border-radius:20px;padding:36px 32px;max-width:360px;width:90%;text-align:center;box-shadow:0 25px 60px rgba(108,99,255,0.2);">
-    <div style="font-size:32px;margin-bottom:16px;">⚠️</div>
-    <p id="modalMsg" style="font-size:15px;color:#e2e8f0;font-weight:600;margin-bottom:24px;line-height:1.6;"></p>
-    <button onclick="closeModal()" style="padding:12px 32px;background:linear-gradient(135deg,#6c63ff,#a78bfa);border:none;border-radius:12px;color:#fff;font-size:15px;font-weight:700;font-family:Inter,sans-serif;cursor:pointer;">Got it</button>
+<!-- MODAL -->
+<div id="customModal">
+  <div class="modal-box">
+    <div class="modal-icon">⚠️</div>
+    <div class="modal-msg" id="modalMsg"></div>
+    <button class="modal-btn" onclick="closeModal()">Got it</button>
   </div>
 </div>
+
+<!-- SAVING -->
 <div class="saving-overlay" id="savingOverlay">
   <div class="saving-box">
     <span class="saving-spinner">⚙️</span>
     <div class="saving-text">Saving your results...</div>
   </div>
 </div>
+
+<div class="footer-text">Developed by CampusTop Video and Creative (Cebu Office)</div>
 
 <script>
 const PASS_SCORE = 70;
@@ -264,12 +344,14 @@ function showModal(msg) {
 function closeModal() {
   document.getElementById('customModal').style.display = 'none';
 }
-function login() {
-  const name = document.getElementById('inputName').value.trim();
-  if (!name) { showModal('Please enter your QQE name.'); return; }
-  user = {name, id: name.toLowerCase().replace(/\s+/g,'_') + '_' + Date.now()};
+
+function startTraining() {
   loadProgress();
-  initUser();
+  showScreen('dashboardScreen');
+  document.getElementById('navbar').style.display = 'flex';
+  document.getElementById('navName').textContent = user.name;
+  document.getElementById('navAvatar').textContent = user.name.charAt(0).toUpperCase();
+  renderDashboard();
 }
 
 function loadProgress() {
@@ -279,14 +361,6 @@ function loadProgress() {
 
 function saveProgress() {
   localStorage.setItem('osh_p_' + user.name, JSON.stringify(progress));
-}
-
-function initUser() {
-  showScreen('dashboardScreen');
-  document.getElementById('navbar').style.display = 'flex';
-  document.getElementById('navName').textContent = user.name;
-  document.getElementById('navAvatar').textContent = user.name.charAt(0).toUpperCase();
-  renderDashboard();
 }
 
 function isUnlocked(id) { return id===1 || (progress[id-1] && progress[id-1].passed); }
@@ -426,8 +500,11 @@ async function saveToLark(score,passed,wrongQuestions) {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        name:user.name, employeeId:user.name,
-        module:currentModule.id, score, passed,
+        name:user.name,
+        employeeId:user.name,
+        module:currentModule.id,
+        score,
+        passed,
         attempts:progress[currentModule.id].attempts,
         wrongQuestions:wrongQuestions.join(', '),
         date:new Date().toISOString()
@@ -441,7 +518,18 @@ function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
+
+window.onload = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlName = urlParams.get('name');
+  if (urlName && urlName.trim() !== '') {
+    user = {name: decodeURIComponent(urlName), id: decodeURIComponent(urlName)};
+    document.getElementById('welcomeName').textContent = decodeURIComponent(urlName);
+    showScreen('welcomeScreen');
+  } else {
+    showScreen('noAccessScreen');
+  }
+};
 </script>
-<div style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(100,116,139,0.55);white-space:nowrap;pointer-events:none;font-family:Inter,sans-serif;">Developed by CampusTop Video and Creative (Cebu Office)</div>
 </body>
 </html>
